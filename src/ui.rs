@@ -19,6 +19,7 @@ use ratatui::{
         Paragraph,
         block::{Title, Position}, Wrap
     }};
+use reqwest::Client;
 use tokio::task::JoinSet;
 
 use crate::address::FinalWallet;
@@ -39,11 +40,11 @@ pub fn restore_terminal(
     Ok(terminal.show_cursor()?)
 }
 
-pub async fn run(terminal: &mut Terminal<CrosstermBackend<Stdout>>) -> Result<(), Box<dyn Error>> {
+pub async fn run(terminal: &mut Terminal<CrosstermBackend<Stdout>>, client: Client) -> Result<(), Box<dyn Error>> {
     Ok(loop {
         let mut tasks = JoinSet::new();
         for _ in 0..5 {
-            tasks.spawn(generate_batches());
+            tasks.spawn(generate_batches(client.clone()));
         }
 
         while let Some(res) = tasks.join_next().await {
@@ -51,9 +52,6 @@ pub async fn run(terminal: &mut Terminal<CrosstermBackend<Stdout>>) -> Result<()
                 terminal.draw(|f| ui(f, result))?;
             }
         }
-
-        // for res in result {
-        // }
 
         if event::poll(Duration::from_millis(0))? {
             if let Event::Key(key) = event::read()? {

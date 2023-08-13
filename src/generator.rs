@@ -1,11 +1,12 @@
 use futures::stream::FuturesOrdered;
 use futures::StreamExt;
 
+use reqwest::Client;
 use strum::IntoEnumIterator;
 use crate::{FinalWallet, Wallets, EthWallet, ChainType, merge_balances, get_multiple_address};
 use std::error;
 
-pub async fn generate_batches() -> Result<Vec<FinalWallet>, Box<dyn error::Error + Send + Sync>> {
+pub async fn generate_batches(client: Client) -> Result<Vec<FinalWallet>, Box<dyn error::Error + Send + Sync>> {
     let wallets = EthWallet::batch().await.unwrap();
     // let wallets = Wallets::new(vec![EthWallet {
     //     address: String::from("0x3f349bBaFEc1551819B8be1EfEA2fC46cA749aA1"),
@@ -93,7 +94,7 @@ pub async fn generate_batches() -> Result<Vec<FinalWallet>, Box<dyn error::Error
     for chain in ChainType::iter() {
         // TODO: Optimize later using Arc for safe-thread referencing.
         // println!("{:?}", chain);
-        tasks.push_back(get_multiple_address(wallets.clone(), chain));
+        tasks.push_back(get_multiple_address(wallets.clone(), chain, &client));
     }
 
     let mut final_results = vec![];

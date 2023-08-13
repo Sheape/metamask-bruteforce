@@ -1,5 +1,5 @@
 use crate::address::Wallets;
-use reqwest::IntoUrl;
+use reqwest::{IntoUrl, Client};
 use strum_macros::EnumIter;
 use serde::Deserialize;
 
@@ -156,7 +156,7 @@ impl MergedAddress {
     } 
 }
 
-pub async fn get_multiple_address(addresses: Wallets, chain: ChainType)
+pub async fn get_multiple_address(addresses: Wallets, chain: ChainType, client: &Client)
         -> Result<Vec<MergedAddress>, reqwest::Error> {
     dotenv().ok();
     let addr = addresses.clone().addresses_to_str();
@@ -169,18 +169,9 @@ pub async fn get_multiple_address(addresses: Wallets, chain: ChainType)
         api_key = api_key
     );
 
-    async fn call_api<T: IntoUrl>(url: T) -> Result<reqwest::Response, reqwest::Error>{
-        reqwest::get(url).await
-    }
+    let response = client.get(url).send().await.unwrap();
 
-    let response= call_api(&url).await;
-    let response_result = if let Ok(res) = response {
-        res
-    } else {
-        call_api(url).await.unwrap()
-    };
-
-    let body = response_result.json::<ResponseData>().await?;
+    let body = response.json::<ResponseData>().await.unwrap();
 
     // println!("{:?}", body.result);
     let merged_vector: Vec<MergedAddress> = addresses
