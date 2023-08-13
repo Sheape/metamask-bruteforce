@@ -7,7 +7,9 @@ use tokio::fs::OpenOptions;
 use tokio::io::AsyncWriteExt;
 
 use dotenv::dotenv;
+use try_again::{retry_async, TokioSleep, Retry, Delay::Static};
 use std::env;
+use std::time::Duration;
 
 pub(crate) static BSCSCAN_PREFIX_URL: &str = "https://api.bscscan.com";
 pub(crate) static ETHERSCAN_PREFIX_URL: &str = "https://api.etherscan.io";
@@ -130,9 +132,6 @@ pub struct MergedAddress {
     pub balance: String,
 }
 
-// impl Account {
-//     pub fn
-// }
 const OUTPUT_FILE: &str = "found.txt";
 
 impl MergedAddress {
@@ -156,6 +155,11 @@ impl MergedAddress {
     } 
 }
 
+async fn call_api<T: IntoUrl>(client: Client, url: T) -> Result<ResponseData, reqwest::Error> {
+    let response = client.get(url).send().await.unwrap();
+    response.json::<ResponseData>().await
+}
+
 pub async fn get_multiple_address(addresses: Wallets, chain: ChainType, client: &Client)
         -> Result<Vec<MergedAddress>, reqwest::Error> {
     dotenv().ok();
@@ -169,11 +173,17 @@ pub async fn get_multiple_address(addresses: Wallets, chain: ChainType, client: 
         api_key = api_key
     );
 
-    let response = client.get(url).send().await.unwrap();
+    let body = retry_async(
+        Retry {
+            max_tries: 100,
+            delay: Some(Static { delay: Duration::from_millis(250) })
+        },
+        TokioSleep {},
+        || async {
+            call_api(client.clone(), url.clone()).await
+        }
+    ).await.unwrap();
 
-    let body = response.json::<ResponseData>().await.unwrap();
-
-    // println!("{:?}", body.result);
     let merged_vector: Vec<MergedAddress> = addresses
                         .wallets.iter()
                         .zip(body.result.iter())

@@ -1146,6 +1146,7 @@ dependencies = [
  "strum_macros",
  "tiny-bip39",
  "tokio",
+ "try-again",
 ]
 
 [[package]]
@@ -2147,7 +2148,9 @@ dependencies = [
  "libc",
  "mio",
  "num_cpus",
+ "parking_lot",
  "pin-project-lite",
+ "signal-hook-registry",
  "socket2",
  "tokio-macros",
  "windows-sys",
@@ -2241,6 +2244,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0955b8137a1df6f1a2e9a37d8a6656291ff0297c1a97c24e0d8425fe2312f79a"
 dependencies = [
  "once_cell",
+]
+
+[[package]]
+name = "try-again"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1006cfd66eadaaa9ec7a3d011336e40b98cd6c4d8f7b1e331080f6145ac00671"
+dependencies = [
+ "tokio",
+ "tracing",
 ]
 
 [[package]]
