@@ -99,23 +99,23 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
         .collect();
 
     // TODO: Optimize to avoid using clone.
-    render_text(data.address.clone(), Color::Green, "Address", frame, upmost);
-    render_text(data.mnemonic.clone(), Color::Green, "Mnemonic", frame, top);
-    render_text(data.balances.bsc.clone(), Color::Blue, "BSC", frame, balance_horizontal[0]);
-    render_text(data.balances.ethereum.clone(), Color::Blue, "Ethereum", frame, balance_horizontal[1]);
-    render_text(data.balances.polygon.clone(), Color::Blue, "Polygon", frame, balance_horizontal[2]);
-    render_text(data.balances.polygon_zkevm.clone(), Color::Blue, "Polygon zkEVM", frame, balance_horizontal[3]);
-    render_text(data.balances.arbitrum.clone(), Color::Blue, "Arbitrum", frame, balance_horizontal[4]);
-    render_text(data.balances.fantom.clone(), Color::Blue, "Fantom", frame, balance_horizontal[5]);
-    render_text(data.balances.optimism.clone(), Color::Blue, "Optimism", frame, balance_horizontal[6]);
-    render_text(data.balances.cronos.clone(), Color::Blue, "Cronos", frame, balance_horizontal[7]);
-    render_text(data.balances.bittorrent.clone(), Color::Blue, "Bittorrent", frame, balance_horizontal[8]);
-    render_text(data.balances.moonbeam.clone(), Color::Blue, "Moonbeam", frame, balance_horizontal[9]);
-    render_text(data.balances.moonriver.clone(), Color::Blue, "Moonriver", frame, balance_horizontal[10]);
-    render_text(data.balances.avalanche.clone(), Color::Blue, "Avalanche", frame, balance_horizontal[11]);
-    render_text(data.balances.celo.clone(), Color::Blue, "Celo", frame, balance_horizontal[12]);
-    render_text(data.balances.boba.clone(), Color::Blue, "Boba", frame, balance_horizontal[13]);
-    render_text(data.balances.gnosis.clone(), Color::Blue, "Gnosis", frame, balance_horizontal[14]);
+    render_text(data.address.clone(), Color::Green, Color::Cyan, "Address", frame, upmost);
+    render_text(data.mnemonic.clone(), Color::Green, Color::Cyan,"Mnemonic", frame, top);
+    render_text(data.balances.bsc.clone(), Color::White, Color::Blue, "BSC", frame, balance_horizontal[0]);
+    render_text(data.balances.ethereum.clone(), Color::White, Color::Blue, "Ethereum", frame, balance_horizontal[1]);
+    render_text(data.balances.polygon.clone(), Color::White, Color::Blue, "Polygon", frame, balance_horizontal[2]);
+    render_text(data.balances.polygon_zkevm.clone(), Color::White, Color::Blue, "Polygon zkEVM", frame, balance_horizontal[3]);
+    render_text(data.balances.arbitrum.clone(), Color::White, Color::Blue, "Arbitrum", frame, balance_horizontal[4]);
+    render_text(data.balances.fantom.clone(), Color::White, Color::Blue, "Fantom", frame, balance_horizontal[5]);
+    render_text(data.balances.optimism.clone(), Color::White, Color::Blue, "Optimism", frame, balance_horizontal[6]);
+    render_text(data.balances.cronos.clone(), Color::White, Color::Blue, "Cronos", frame, balance_horizontal[7]);
+    render_text(data.balances.bittorrent.clone(), Color::White, Color::Blue, "Bittorrent", frame, balance_horizontal[8]);
+    render_text(data.balances.moonbeam.clone(), Color::White, Color::Blue, "Moonbeam", frame, balance_horizontal[9]);
+    render_text(data.balances.moonriver.clone(), Color::White, Color::Blue, "Moonriver", frame, balance_horizontal[10]);
+    render_text(data.balances.avalanche.clone(), Color::White, Color::Blue, "Avalanche", frame, balance_horizontal[11]);
+    render_text(data.balances.celo.clone(), Color::White, Color::Blue, "Celo", frame, balance_horizontal[12]);
+    render_text(data.balances.boba.clone(), Color::White, Color::Blue, "Boba", frame, balance_horizontal[13]);
+    render_text(data.balances.gnosis.clone(), Color::White, Color::Blue, "Gnosis", frame, balance_horizontal[14]);
 
     // frame.render_widget(
     //     Paragraph::new("Constraint::Length(4)").block(
@@ -149,6 +149,7 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
         Block::default()
             .borders(Borders::ALL)
             .border_type(BorderType::Rounded)
+            .border_style(Style::default().fg(Color::Cyan))
             .title("Balance"),
         mid,
     );
@@ -164,7 +165,8 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
     // );
 
     frame.render_widget(
-        Paragraph::new("No wallets found yet")
+        Paragraph::new(
+            Span::styled("No wallets found yet", Style::default().fg(Color::DarkGray)))
             .fg(Color::Yellow)
             .block(
                 Block::default()
@@ -175,10 +177,10 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
     );
 }
 
-pub fn render_text(paragraph: String, color: Color, title: &str, frame: &mut Frame<CrosstermBackend<Stdout>>, area: Rect) {
+pub fn render_text(paragraph: String, color: Color, frame_color: Color, title: &str, frame: &mut Frame<CrosstermBackend<Stdout>>, area: Rect) {
     frame.render_widget(
-        Paragraph::new(paragraph)
-            .style(Style::default().fg(color))
+        Paragraph::new(Span::styled(paragraph, Style::default().fg(color)))
+            .fg(frame_color)
             .block(
                 Block::default()
                     .borders(Borders::ALL)
