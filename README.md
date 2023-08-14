@@ -40,7 +40,7 @@ memory too much (which both python and javascript suffered through when I tried
 to write it from those languages) so I can run the program 24/7.
 
 
-<a id="Installation"></a>
+<a id="installation"></a>
 
 ## Installation
 
@@ -73,7 +73,7 @@ Alternatively, you can clone the repo and build it manually from source:
 
 ## Usage
 
-1.  [Install the package](#Installation)
+1.  [Install the package](#installation)
 2.  Rename `.env.template` to `.env`
 3.  Create an account to each of the following sites:
     -   [BscScan](https://bscscan.com/register)

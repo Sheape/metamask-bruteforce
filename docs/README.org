@@ -38,7 +38,7 @@ to write it from those languages) so I can run the program 24/7.
 
 ** Installation
 :PROPERTIES:
-:CUSTOM_ID: Installation
+:CUSTOM_ID: installation
 :END:
 You can do any of the following below:
 *** Install the Binary (recommended)
@@ -58,7 +58,7 @@ sudo cp ./target/release/metamask-bruteforce /usr/bin/metamask-bruteforce
 #+end_src
 
 ** Usage
-1. [[#Installation][Install the package]]
+1. [[#installation][Install the package]]
 2. Rename ~.env.template~ to ~.env~
 3. Create an account to each of the following sites:
    - [[https://bscscan.com/register][BscScan]]
