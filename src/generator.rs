@@ -3,7 +3,7 @@ use futures::StreamExt;
 
 use reqwest::Client;
 use strum::IntoEnumIterator;
-use crate::{FinalWallet, Wallets, EthWallet, ChainType, merge_balances, get_multiple_address};
+use crate::{ FinalWallet, EthWallet, ChainType, merge_balances, get_multiple_address };
 use std::error;
 
 pub async fn generate_batches(client: Client) -> Result<Vec<FinalWallet>, Box<dyn error::Error + Send + Sync>> {

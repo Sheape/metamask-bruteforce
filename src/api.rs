@@ -120,9 +120,7 @@ pub struct Account {
 
 #[derive(Debug, Deserialize)]
 struct ResponseData {
-    status: String,
-    message: String,
-    result: Vec<Account>
+    pub(crate) result: Vec<Account>
 }
 
 #[derive(Debug)]
@@ -136,7 +134,7 @@ const OUTPUT_FILE: &str = "found.txt";
 
 impl MergedAddress {
     pub async fn check_if_not_empty(&self, chain: ChainType) -> Result<(), Box<dyn std::error::Error>> {
-        if self.balance != "0" {
+        if self.balance != "0" && !self.balance.is_empty() {
             let mut file = OpenOptions::new()
                 .create(true)
                 .append(true)
