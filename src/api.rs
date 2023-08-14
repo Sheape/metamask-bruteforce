@@ -14,6 +14,7 @@ use std::time::Duration;
 pub(crate) static BSCSCAN_PREFIX_URL: &str = "https://api.bscscan.com";
 pub(crate) static ETHERSCAN_PREFIX_URL: &str = "https://api.etherscan.io";
 pub(crate) static POLYGONSCAN_PREFIX_URL: &str = "https://api.polygonscan.com";
+pub(crate) static POLYGON_ZKEVM_SCAN_PREFIX_URL: &str = "https://api-zkevm.polygonscan.com";
 pub(crate) static ARBISCAN_PREFIX_URL: &str = "https://api.arbiscan.io";
 pub(crate) static FTMSCAN_PREFIX_URL: &str = "https://api.ftmscan.com";
 pub(crate) static OPTIMISTIC_PREFIX_URL: &str = "https://api-optimistic.etherscan.io";
@@ -38,6 +39,9 @@ pub enum ChainType {
 
     /// Polygon
     Polygon,
+
+    /// Polygon zkEVM
+    PolygonZkEVM,
 
     /// Arbitrum
     Arbitrum,
@@ -79,6 +83,7 @@ pub fn get_prefix_url(chain: ChainType) -> &'static str {
         ChainType::BSC => BSCSCAN_PREFIX_URL,
         ChainType::Ethereum => ETHERSCAN_PREFIX_URL,
         ChainType::Polygon => POLYGONSCAN_PREFIX_URL,
+        ChainType::PolygonZkEVM => POLYGON_ZKEVM_SCAN_PREFIX_URL,
         ChainType::Arbitrum => ARBISCAN_PREFIX_URL,
         ChainType::Fantom => FTMSCAN_PREFIX_URL,
         ChainType::Optimism => OPTIMISTIC_PREFIX_URL,
@@ -98,6 +103,7 @@ pub fn get_api_key(chain: ChainType) -> String {
         ChainType::BSC => env::var("BSC_SCAN").unwrap(),
         ChainType::Ethereum => env::var("ETHER_SCAN").unwrap(),
         ChainType::Polygon => env::var("POLYGON_SCAN").unwrap(),
+        ChainType::PolygonZkEVM => env::var("POLYGON_ZKEVM_SCAN").unwrap(),
         ChainType::Arbitrum => env::var("ARB_SCAN").unwrap(),
         ChainType::Fantom => env::var("FTM_SCAN").unwrap(),
         ChainType::Optimism => env::var("OPT_SCAN").unwrap(),

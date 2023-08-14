@@ -21,6 +21,7 @@ pub struct ChainBalance {
     pub bsc: String,
     pub ethereum: String,
     pub polygon: String,
+    pub polygon_zkevm: String,
     pub arbitrum: String,
     pub fantom: String,
     pub optimism: String,
@@ -95,20 +96,21 @@ pub fn merge_balances(results: Vec<Vec<MergedAddress>>) -> Vec<FinalWallet> {
                 address: merged_address.address.clone(),
                 mnemonic: merged_address.mnemonic.clone(),
                 balances: ChainBalance {
-                    bsc:        results[0][j].balance.clone(),
-                    ethereum:   results[1][j].balance.clone(),
-                    polygon:    results[2][j].balance.clone(),
-                    arbitrum:   results[3][j].balance.clone(),
-                    fantom:     results[4][j].balance.clone(),
-                    optimism:   results[5][j].balance.clone(),
-                    cronos:     results[6][j].balance.clone(),
-                    moonbeam:   results[7][j].balance.clone(),
-                    moonriver:  results[8][j].balance.clone(),
-                    bittorrent: results[9][j].balance.clone(),
-                    avalanche:  results[10][j].balance.clone(),
-                    celo:       results[11][j].balance.clone(),
-                    boba:       results[12][j].balance.clone(),
-                    gnosis:     results[13][j].balance.clone()
+                    bsc:           results[0][j].balance.clone(),
+                    ethereum:      results[1][j].balance.clone(),
+                    polygon:       results[2][j].balance.clone(),
+                    polygon_zkevm: results[3][j].balance.clone(),
+                    arbitrum:      results[4][j].balance.clone(),
+                    fantom:        results[5][j].balance.clone(),
+                    optimism:      results[6][j].balance.clone(),
+                    cronos:        results[7][j].balance.clone(),
+                    moonbeam:      results[8][j].balance.clone(),
+                    moonriver:     results[9][j].balance.clone(),
+                    bittorrent:    results[10][j].balance.clone(),
+                    avalanche:     results[11][j].balance.clone(),
+                    celo:          results[12][j].balance.clone(),
+                    boba:          results[13][j].balance.clone(),
+                    gnosis:        results[14][j].balance.clone()
                 }
             };
             if final_results.len() < 20 {

@@ -70,8 +70,8 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
             [
                 Constraint::Min(3),
                 Constraint::Min(4),
-                Constraint::Percentage(50),
-                Constraint::Min(4),
+                Constraint::Min(13),
+                Constraint::Min(3),
             ]
             .as_ref(),
         )
@@ -84,7 +84,7 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
         .direction(Direction::Horizontal)
         .horizontal_margin(3)
         .vertical_margin(2)
-        .constraints(vec![Constraint::Percentage(25); 4])
+        .constraints(vec![Constraint::Percentage(20); 5])
         .split(mid);
 
     let balance_horizontal: Vec<_> = balance_vertical
@@ -92,7 +92,7 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
         .flat_map(|area| {
             Layout::default()
                 .direction(Direction::Vertical)
-                .constraints(vec![Constraint::Percentage(25); 4])
+                .constraints(vec![Constraint::Max(3); 3])
                 .split(*area)
                 .to_vec()
         })
@@ -104,17 +104,18 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
     render_text(data.balances.bsc.clone(), Color::Blue, "BSC", frame, balance_horizontal[0]);
     render_text(data.balances.ethereum.clone(), Color::Blue, "Ethereum", frame, balance_horizontal[1]);
     render_text(data.balances.polygon.clone(), Color::Blue, "Polygon", frame, balance_horizontal[2]);
-    render_text(data.balances.arbitrum.clone(), Color::Blue, "Arbitrum", frame, balance_horizontal[3]);
-    render_text(data.balances.fantom.clone(), Color::Blue, "Fantom", frame, balance_horizontal[4]);
-    render_text(data.balances.optimism.clone(), Color::Blue, "Optimism", frame, balance_horizontal[5]);
-    render_text(data.balances.cronos.clone(), Color::Blue, "Cronos", frame, balance_horizontal[6]);
-    render_text(data.balances.bittorrent.clone(), Color::Blue, "Bittorrent", frame, balance_horizontal[7]);
-    render_text(data.balances.moonbeam.clone(), Color::Blue, "Moonbeam", frame, balance_horizontal[8]);
-    render_text(data.balances.moonriver.clone(), Color::Blue, "Moonriver", frame, balance_horizontal[9]);
-    render_text(data.balances.avalanche.clone(), Color::Blue, "Avalanche", frame, balance_horizontal[10]);
-    render_text(data.balances.celo.clone(), Color::Blue, "Celo", frame, balance_horizontal[11]);
-    render_text(data.balances.boba.clone(), Color::Blue, "Boba", frame, balance_horizontal[12]);
-    render_text(data.balances.gnosis.clone(), Color::Blue, "Gnosis", frame, balance_horizontal[13]);
+    render_text(data.balances.polygon_zkevm.clone(), Color::Blue, "Polygon zkEVM", frame, balance_horizontal[3]);
+    render_text(data.balances.arbitrum.clone(), Color::Blue, "Arbitrum", frame, balance_horizontal[4]);
+    render_text(data.balances.fantom.clone(), Color::Blue, "Fantom", frame, balance_horizontal[5]);
+    render_text(data.balances.optimism.clone(), Color::Blue, "Optimism", frame, balance_horizontal[6]);
+    render_text(data.balances.cronos.clone(), Color::Blue, "Cronos", frame, balance_horizontal[7]);
+    render_text(data.balances.bittorrent.clone(), Color::Blue, "Bittorrent", frame, balance_horizontal[8]);
+    render_text(data.balances.moonbeam.clone(), Color::Blue, "Moonbeam", frame, balance_horizontal[9]);
+    render_text(data.balances.moonriver.clone(), Color::Blue, "Moonriver", frame, balance_horizontal[10]);
+    render_text(data.balances.avalanche.clone(), Color::Blue, "Avalanche", frame, balance_horizontal[11]);
+    render_text(data.balances.celo.clone(), Color::Blue, "Celo", frame, balance_horizontal[12]);
+    render_text(data.balances.boba.clone(), Color::Blue, "Boba", frame, balance_horizontal[13]);
+    render_text(data.balances.gnosis.clone(), Color::Blue, "Gnosis", frame, balance_horizontal[14]);
 
     // frame.render_widget(
     //     Paragraph::new("Constraint::Length(4)").block(
