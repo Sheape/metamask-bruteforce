@@ -4,10 +4,25 @@
 
 * Metamask Bruteforce
 This is my first project written in rust, so please if you have any issues feel
-free to open them or if you have suggestions on how I can improve my code.
+free to open them or if you have suggestions on how I can improve my code. It's
+not actually bruteforcing metamask but rather just using Blockscan's API.
 
 [[https://user-images.githubusercontent.com/86521166/260396429-eb877d79-82c3-4301-900d-cd99401fcde8.png]]
 
+** Why?
+People tend to forget their mnemonics or passwords, or even send someone
+ethereum but in the wrong network/address. There are still some lost wallets
+which have balance in them and nobody can access them. Metamask isn't really the
+target of this but it just happens to be very popular with a lot of ethereum
+networks.
+
+It is not illegal to try to find these wallets. Just like a treasure chest or
+lost pile of gold, the owner of them either died or just forgot about it and if
+you're lucky to find one, then you can claim it for yours.
+
+Dont steal active wallets, Im not responsible for what you would do with this.
+It's not my responsibility if you do something wrong. It takes so much time to
+find one lost wallet so goodluck!
 ** Features
 - *Low memory usage* - Only using about _20MB of RAM_, so you can run this without
   affecting your daily workflow.
@@ -59,7 +74,7 @@ sudo cp ./target/release/metamask-bruteforce /usr/bin/metamask-bruteforce
 
 ** Usage
 1. [[#installation][Install the package]]
-2. Rename ~.env.template~ to ~.env~
+2. Rename ~.env.template~ to ~.env~ or create one if you've installed from binary.
 3. Create an account to each of the following sites:
    - [[https://bscscan.com/register][BscScan]]
    - [[https://etherscan.io/register][Etherscan]]
@@ -78,7 +93,7 @@ sudo cp ./target/release/metamask-bruteforce /usr/bin/metamask-bruteforce
    - [[https://gnosisscan.io/register][Gnosis Scan]]
 4. Create an API key for each of the network.
 5. Replace 'YOUR-API-KEY' to your api key.
-6. Run ~metamask-bruteforce~ from the terminal. Make sure ~.env~ is in the same
-   directory as where you've installed it.
+6. Run ~metamask-bruteforce~ from the terminal. Make sure ~.env~ is in the _same
+   directory_ as where you've installed it.
 7. If you found a wallet, it will be written in ~found.txt~ with the mnemonic,
    address, balance and which network it came from.
