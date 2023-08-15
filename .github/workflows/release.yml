@@ -43,7 +43,7 @@ jobs:
         with:
           command: build
           args: --release --locked
-      - name: Upload Artifact
+      - name: Create Release
         uses: svenstaro/upload-release-action@v2
         with:
           file: target/release/metamask-bruteforce
