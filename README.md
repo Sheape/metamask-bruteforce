@@ -107,7 +107,6 @@ Alternatively, you can clone the repo and build it manually from source:
     -   [Moonriver](https://moonriver.moonscan.io/register)
     -   [Avalanche](https://snowtrace.io/register)
     -   [Celo Scan](https://celoscan.io/register)
-    -   [Boba Scan](https://bobascan.com/register)
     -   [Gnosis Scan](https://gnosisscan.io/register)
 4.  Create an API key for each of the network.
 5.  Replace 'YOUR-API-KEY' to your api key.

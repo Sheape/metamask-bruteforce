@@ -89,7 +89,6 @@ sudo cp ./target/release/metamask-bruteforce /usr/bin/metamask-bruteforce
    - [[https://moonriver.moonscan.io/register][Moonriver]]
    - [[https://snowtrace.io/register][Avalanche]]
    - [[https://celoscan.io/register][Celo Scan]]
-   - [[https://bobascan.com/register][Boba Scan]]
    - [[https://gnosisscan.io/register][Gnosis Scan]]
 4. Create an API key for each of the network.
 5. Replace 'YOUR-API-KEY' to your api key.
