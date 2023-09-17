@@ -114,8 +114,7 @@ fn ui(frame: &mut Frame<CrosstermBackend<Stdout>>, data: FinalWallet) {
     render_text(data.balances.moonriver.clone(), Color::White, Color::Blue, "Moonriver", frame, balance_horizontal[10]);
     render_text(data.balances.avalanche.clone(), Color::White, Color::Blue, "Avalanche", frame, balance_horizontal[11]);
     render_text(data.balances.celo.clone(), Color::White, Color::Blue, "Celo", frame, balance_horizontal[12]);
-    render_text(data.balances.boba.clone(), Color::White, Color::Blue, "Boba", frame, balance_horizontal[13]);
-    render_text(data.balances.gnosis.clone(), Color::White, Color::Blue, "Gnosis", frame, balance_horizontal[14]);
+    render_text(data.balances.gnosis.clone(), Color::White, Color::Blue, "Gnosis", frame, balance_horizontal[13]);
 
     // frame.render_widget(
     //     Paragraph::new("Constraint::Length(4)").block(

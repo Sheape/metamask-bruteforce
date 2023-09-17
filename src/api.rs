@@ -24,7 +24,6 @@ pub(crate) static MOONBEAM_PREFIX_URL: &str = "https://api-moonbeam.moonscan.io"
 pub(crate) static MOONRIVER_PREFIX_URL: &str = "https://api-moonriver.moonscan.io";
 pub(crate) static SNOWTRACE_PREFIX_URL: &str = "https://api.snowtrace.io";
 pub(crate) static CELOSCAN_PREFIX_URL: &str = "https://api.celoscan.io";
-pub(crate) static BOBASCAN_PREFIX_URL: &str = "https://api.bobascan.com";
 pub(crate) static GNOSISSCAN_PREFIX_URL: &str = "https://api.gnosisscan.io";
 
 /// Chain type
@@ -70,9 +69,6 @@ pub enum ChainType {
     /// Celo
     Celo,
 
-    /// Boba
-    Boba,
-
     /// Gnosis
     Gnosis,
 }
@@ -93,7 +89,6 @@ pub fn get_prefix_url(chain: ChainType) -> &'static str {
         ChainType::BitTorrent => BTTCSCAN_PREFIX_URL,
         ChainType::Avalanche => SNOWTRACE_PREFIX_URL,
         ChainType::Celo => CELOSCAN_PREFIX_URL,
-        ChainType::Boba => BOBASCAN_PREFIX_URL,
         ChainType::Gnosis => GNOSISSCAN_PREFIX_URL
     }
 }
@@ -113,7 +108,6 @@ pub fn get_api_key(chain: ChainType) -> String {
         ChainType::BitTorrent => env::var("BTT_SCAN").unwrap(),
         ChainType::Avalanche => env::var("AVAX_SCAN").unwrap(),
         ChainType::Celo => env::var("CELO_SCAN").unwrap(),
-        ChainType::Boba => env::var("BOBA_SCAN").unwrap(),
         ChainType::Gnosis => env::var("XDAI_SCAN").unwrap()
     }
 }

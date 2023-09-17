@@ -31,7 +31,6 @@ pub struct ChainBalance {
     pub bittorrent: String,
     pub avalanche: String,
     pub celo: String,
-    pub boba: String,
     pub gnosis: String,
 }
 
@@ -109,8 +108,7 @@ pub fn merge_balances(results: Vec<Vec<MergedAddress>>) -> Vec<FinalWallet> {
                     bittorrent:    results[10][j].balance.clone(),
                     avalanche:     results[11][j].balance.clone(),
                     celo:          results[12][j].balance.clone(),
-                    boba:          results[13][j].balance.clone(),
-                    gnosis:        results[14][j].balance.clone()
+                    gnosis:        results[13][j].balance.clone()
                 }
             };
             if final_results.len() < 20 {
